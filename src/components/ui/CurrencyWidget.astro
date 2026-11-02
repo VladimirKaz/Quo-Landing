@@ -1,0 +1,240 @@
+---
+import rockIcon from "@/assets/icons/rock.svg";
+import victoryIcon from "@/assets/icons/hands-victory.svg";
+import { Image } from "astro:assets";
+---
+
+<div class="widget-wrapper">
+  <!-- Фиолетовая подложка (сзади) -->
+  <div class="widget-bg"></div>
+
+  <!-- Белая карточка -->
+  <div class="widget-card">
+    <!-- Вкладки -->
+    <div class="widget-tabs">
+      <button class="tab active">Send Money</button>
+      <button class="tab">Track Money</button>
+    </div>
+
+    <!-- Контент -->
+    <div class="widget-content">
+      <!-- Блок отправки -->
+      <div class="input-group">
+        <label>You send</label>
+        <div class="input-row">
+          <div class="input-field">100</div>
+          <div class="currency-select">
+            <span>🇺🇸 USD</span>
+            <svg
+              class="arrow-down"
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L5 5L9 1"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Блок получения -->
+      <div class="input-group">
+        <label>Reciver will get</label>
+        <div class="input-row">
+          <div class="input-field">74.85</div>
+          <div class="currency-select">
+            <span>🇬🇧 GBP</span>
+            <svg
+              class="arrow-down"
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L5 5L9 1"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Emoji -->
+  <div class="emoji emoji-top">
+    <Image src={rockIcon} alt="Rock emoji" />
+  </div>
+
+  <div class="emoji emoji-bottom">
+    <Image src={victoryIcon} alt="Vicrory emoji" />
+  </div>
+
+  <style>
+    /* --- ОБЩАЯ ОБЕРТКА --- */
+    .widget-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 645px; /* Ширина из макета */
+      height: 553px; /* Высота из макета */
+      margin: 0 auto;
+    }
+
+    /* --- СЕРАЯ ПОДЛОЖКА (Верхний правый угол) --- */
+    .widget-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      /* width: 75%;
+      height: 75%; */
+      border-radius: 10px;
+      width: 512px;
+      height: 406px;
+      background: rgba(108, 96, 254, 0.05);
+      z-index: 1;
+    }
+
+    /* --- БЕЛАЯ КАРТОЧКА (Нижний левый угол) --- */
+    .widget-card {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      
+      width: 470px;
+      height: 385px;
+
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(108, 96, 254, 0.08); /* Мягкая цветная тень */
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* --- ВКЛАДКИ --- */
+    .widget-tabs {
+      display: flex;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 0 10px;
+    }
+
+    .tab {
+      padding: 24px 20px;
+      background: transparent;
+      border: none;
+      font-family: var(--font-inter, sans-serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: #71717a; /* Серый цвет неактивной вкладки */
+      cursor: pointer;
+      position: relative;
+    }
+
+    .tab.active {
+      color: #1e1b4b; /* Темно-синий цвет активной вкладки */
+    }
+
+    /* Синяя линия под активной вкладкой */
+    .tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background-color: #3730a3;
+    }
+
+    /* --- КОНТЕНТ ВНУТРИ КАРТОЧКИ --- */
+    .widget-content {
+      padding: 30px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .input-group label {
+      display: block;
+      font-family: var(--font-inter, sans-serif);
+      font-size: 14px;
+      color: #1e1b4b;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    /* Поле ввода (серое) */
+    .input-field {
+      flex: 1;
+      background: #f9fafb; /* Очень светлый серый */
+      padding: 16px 20px;
+      border-radius: 10px;
+      font-family: var(--font-inter, sans-serif);
+      font-size: 16px;
+      font-weight: 500;
+      color: #111827;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Кнопка валюты (синяя) */
+    .currency-select {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #5b4dd8; /* Фиолетово-синий цвет */
+      color: #fff;
+      padding: 0 20px;
+      border-radius: 8px;
+      font-family: var(--font-inter, sans-serif);
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .currency-select:hover {
+      background: #4a3ec4;
+    }
+
+    .arrow-down {
+      opacity: 0.8;
+    }
+
+    /* --- ЭМОДЗИ --- */
+    .emoji {
+      position: absolute;
+      z-index: 3;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Верхняя рука (висит справа сверху) */
+    .emoji-top {
+      top: -30px;
+      right: 20px;
+    }
+
+    /* Нижняя рука (слева внизу) */
+    .emoji-bottom {
+      bottom: -50px;
+      left: -50px;
+
+      rotate: -2deg;
+    }
+  </style>
+</div>

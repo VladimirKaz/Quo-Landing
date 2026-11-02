@@ -1,46 +1,41 @@
-# Astro Starter Kit: Basics
+# Quo — Landing Page
 
-```sh
-npm create astro@latest -- --template basics
-```
+Одностраничный лендинг для вымышленного финтех-сервиса по переводу денег "Quo". Проект создан для отработки навыков современной верстки, работы с компонентным подходом в Astro и адаптивного дизайна.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Preview](./preview.png)
 
-## 🚀 Project Structure
+## 🚀 Демо и Репозиторий
+*   **Live Demo:** [Ссылка на Vercel/Netlify](https://твой-сайт.vercel.app)
+*   **Исходный код:** [GitHub](https://github.com/твой-профиль/quo-landing)
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠 Стек технологий
+*   **Фреймворк:** [Astro](https://astro.build/) (Статическая генерация, компонентный подход)
+*   **Язык:** TypeScript (для типизации данных и пропсов)
+*   **Стилизация:** Чистый CSS (Grid, Flexbox, CSS-переменные, маски)
+*   **Шрифты:** Fontsource (Inter, Hanken Grotesk, Outfit) — подключены локально через npm
+*   **Графика:** Figma (экспорт SVG и PNG, инлайн-SVG)
 
+## ✨ Что реализовано (Ключевые фичи)
+*   **Адаптивная верстка:** Поддержка десктопа, планшетов и мобильных устройств (медиа-запросы).
+*   **Компонентная архитектура:** Логика разбита на переиспользуемые UI-компоненты (`Button`, `NewsletterForm`, `SocialLinks`) и секции (`Hero`, `Features`, `Footer`).
+*   **Работа с данными:** Для рендера карточек и списков использованы массивы объектов и метод `.map()`. Типизация данных через TypeScript `interface`.
+*   **Сложные визуальные эффекты:**
+    *   Плавное затухание фотографий (`mask-image`).
+    *   Декоративные элементы (стрелки, монетки, эмодзи) вынесены в отдельные компоненты.
+    *   Интерактивный виджет с CSS-анимацией графиков.
+*   **Оптимизация:** Использование компонента `<Image>` из Astro для оптимизации картинок, `loading="lazy"` для изображений ниже первого экрана, `priority` для LCP-элементов.
+
+## 📁 Структура проекта
 ```text
 /
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+├── public/              # Статические файлы (шрифты, фоны, логотипы)
+├── src/
+│   ├── assets/          # Изображения и иконки для обработки через <Image />
+│   ├── components/      # Переиспользуемые компоненты
+│   │   ├── ui/          # Мелкие элементы (Кнопки, Формы, Декор)
+│   ├── data/            # Файлы с данными (массивы для карточек, шагов)
+│   ├── layouts/         # Базовые шаблоны (BaseLayout)
+│   ├── pages/           # Страницы сайта (index.astro)
+│   └── styles/          # Глобальные стили (reset, tokens, global)
+├── astro.config.mjs     # Конфигурация Astro
+└── package.json         # Зависимости проекта

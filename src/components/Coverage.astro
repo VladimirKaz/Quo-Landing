@@ -1,0 +1,99 @@
+---
+import WorldMap from "@/assets/images/Coverage/worldMap.png";
+import { Image } from "astro:assets";
+
+const coverageTitle = "Widely covering these countries";
+const coverageParagraphs = [
+  "Quo is the most easier way for transaction with your friends and family. No matter where are you.",
+  "An exceptional way for make your life one step easier. Quo is the most easier way for transaction with your friends and family.",
+];
+---
+
+<section class="coverage-section">
+  <div class="container coverage-container">
+    <!-- Заголовок и описание -->
+    <div class="coverage-header">
+      <h2 class="coverage-title">{coverageTitle}</h2>
+
+      <div class="coverage-description">
+        {
+          coverageParagraphs.map((text) => (
+            <p class="coverage-subtitle">{text}</p>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Обертка для карты -->
+    <div class="map-image-wrapper">
+      <Image
+        src={WorldMap}
+        alt={"World map with covered countries"}
+        class={"coverage-map"}
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .coverage-section {
+    padding: 80px 0;
+    background-color: var(--dark-blue);
+    overflow: hidden;
+  }
+
+  .coverage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .coverage-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .coverage-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: clamp(32px, 4vw, 46px);
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .coverage-description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .coverage-subtitle {
+    font-family: var(--font-inter);
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .map-image-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .coverage-map {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* --- АДАПТИВ --- */
+  @media (max-width: 900px) {
+    .coverage-section {
+      padding: 40px 0;
+    }
+  }
+</style>

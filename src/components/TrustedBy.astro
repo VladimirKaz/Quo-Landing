@@ -1,0 +1,91 @@
+---
+import googleLogo from "@/assets/logos/google.svg";
+import slackLogo from "@/assets/logos/slack.svg";
+import amazonLogo from "@/assets/logos/amazon.svg";
+import dropboxLogo from "@/assets/logos/dropbox.svg";
+import microsoftLogo from "@/assets/logos/microsoft.svg";
+
+import { Image } from "astro:assets";
+
+const brands = [
+  { name: "Google", src: googleLogo },
+  { name: "Slack", src: slackLogo },
+  { name: "Amazon", src: amazonLogo },
+  { name: "Dropbox", src: dropboxLogo },
+  { name: "Microsoft", src: microsoftLogo },
+];
+
+const sectionTitle = "Trusted By";
+---
+
+<section class="trusted-by container">
+  <h2 class="trusted-title">{sectionTitle}</h2>
+
+  <div class="logos-grid">
+    {
+      brands.map((brand) => (
+        <div class="logo-item">
+          <Image
+            src={brand.src}
+            alt={`${brand.name} logo`}
+            class="brand-logo"
+            loading={"lazy"}
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .trusted-by {
+    text-align: center;
+  }
+
+  .trusted-title {
+    margin-bottom: 100px;
+
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: 45px;
+    color: #000;
+  }
+
+  .logos-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .logo-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+
+  .brand-logo {
+    max-height: 160px;
+    width: auto;
+    max-width: 130px;
+
+    filter: grayscale(100%) opacity(0.4);
+    transition: filter 0.3s ease;
+  }
+
+  .logo-item:hover .brand-logo {
+    filter: grayscale(0%) opacity(1);
+  }
+
+  @media (max-width: 768px) {
+    .logos-grid {
+      justify-content: center;
+      gap: 30px;
+    }
+    .brand-logo {
+      height: 24px;
+    }
+  }
+</style>

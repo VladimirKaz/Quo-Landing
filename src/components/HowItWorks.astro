@@ -1,0 +1,150 @@
+---
+import { steps } from "@/data/steps";
+
+const title = "How Quo works?";
+const subTitle = [
+  "Quo is the most easier way for transaction with your friends and family.",
+  "No matter where are you. An exceptional way for make your life one step easier",
+];
+---
+
+<section class="how-it-works">
+  <!-- Заголовок -->
+  <div class="container hiw-header">
+    <h2 class="hiw-title">{title}</h2>
+
+    {subTitle.map((text) => <p class="hiw-subtitle">{text}</p>)}
+  </div>
+
+  <!-- Блок с карточками и фоном -->
+  <div class="hiw-cards-area">
+    <div class="hiw-bg-layer"></div>
+
+    <!-- Сетка карточек -->
+    <div class="container hiw-grid">
+      {
+        steps.map((step) => (
+          <div class="step-card">
+            <div class="step-icon-wrapper">
+              <Fragment set:html={step.icon} />
+            </div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    padding: 100px 0 0;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .hiw-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .hiw-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: clamp(32px, 4vw, 46px);
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  .hiw-subtitle {
+    font-family: var(--font-inter);
+    font-size: clamp(16px, 1.5vw, 18px);
+    line-height: 1.6;
+    color: rgba(10, 2, 19, 0.5);
+
+    max-width: 766px;
+    margin: 0 auto;
+  }
+
+  .hiw-cards-area {
+    position: relative;
+    padding-bottom: 100px;
+  }
+
+  .hiw-bg-layer {
+    position: absolute;
+    top: 40%; /* Фон начинается с середины карточек */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(245, 245, 253, 0.6);
+    z-index: 0;
+  }
+
+  .hiw-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    align-items: stretch;
+  }
+
+  /* --- КАРТОЧКА --- */
+  .step-card {
+    background: #ffffff;
+    box-shadow: 0 7px 34px 0 rgba(137, 134, 139, 0.05);
+    border-radius: 20px;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .step-icon-wrapper {
+    width: 140px;
+    height: 140px;
+    background-color: #f4f4fc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .step-icon-wrapper svg {
+    width: 75px;
+    height: 75px;
+  }
+
+  .step-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 12px;
+  }
+
+  .step-desc {
+    font-family: var(--font-inter);
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(10, 2, 19, 0.5);
+    max-width: 280px;
+    margin: 0;
+  }
+
+  /* --- АДАПТИВ --- */
+  @media (max-width: 900px) {
+    .hiw-grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .hiw-bg-layer {
+      top: 20%;
+    }
+  }
+</style>

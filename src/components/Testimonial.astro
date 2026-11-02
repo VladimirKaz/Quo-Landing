@@ -1,0 +1,281 @@
+---
+import amandaSmith from "@/assets/images/testimonial/amanda-smith.png";
+import tickets from "@/assets/images/testimonial/tickets.svg";
+import smile from "@/assets/images/testimonial/smile.svg";
+import like from "@/assets/images/testimonial/like.svg";
+import { Image } from "astro:assets";
+
+const testimonials = [
+  {
+    text: [
+      "Quo is the most easier way for transaction with your friends and family.",
+      "No matter where are you. An exceptional way for make your life one step easier.",
+      "Quo is the most easier way for transaction with your friends and family.",
+    ],
+    author: "Amanda Smith",
+    role: "CEO, Amazon",
+    image: amandaSmith,
+  },
+];
+
+// Берем первый отзыв для отображения
+const current = testimonials[0];
+
+const titleSection = "Satisfied peoples saying about Quo!";
+---
+
+<section class="testimonial-section">
+  <div class="container testimonial-grid">
+    <!-- Левая колонка: Фото и декор -->
+    <div class="testimonial-visual">
+      <Image src={current.image} alt={current.author} class={"avatar-img"} />
+      <!-- Декоративные эмодзи -->
+      <div class="decor-emoji emoji-wink">
+        <Image src={smile} alt={"emoji smile"} />
+      </div>
+      <div class="decor-emoji emoji-thumb">
+        <Image src={like} alt={"emoji like"} />
+      </div>
+    </div>
+
+    <!-- Правая колонка: Текст -->
+    <div class="testimonial-content">
+      <h2 class="testimonial-title">{titleSection}</h2>
+
+      <!-- Большая кавычка на фоне -->
+      <div class="quote-icon">
+        <Image src={tickets} alt={"tickets bg"} />
+      </div>
+
+      <div class="testimonial-text">
+        {current.text.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <div class="testimonial-author">
+        <div class="author-name">{current.author}</div>
+        <div class="author-role">{current.role}</div>
+      </div>
+
+      <!-- Кнопки навигации (заглушки) -->
+      <div class="slider-controls">
+        <button class="slider-btn prev" aria-label="Previous review">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="15 18 9 12 15 6"></polyline></svg
+          >
+        </button>
+        <button class="slider-btn next" aria-label="Next review">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><polyline points="9 18 15 12 9 6"></polyline></svg
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-section {
+    padding: 100px 0;
+    background: #fff;
+    overflow: hidden; /* Чтобы декор не вылезал */
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две равные колонки */
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* --- ЛЕВАЯ КОЛОНКА (ФОТО) --- */
+  .testimonial-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .avatar-img {
+    width: 100%;
+    max-width: 522px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 20px; /* Если нужно скругление */
+
+    mask-image: linear-gradient(180deg, #000 0%, #000 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      #000 0%,
+      #000 60%,
+      transparent 100%
+    );
+  }
+
+  /* Эмодзи */
+  .decor-emoji {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    /* Центрируем текст-эмодзи */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .emoji-wink {
+    top: 35%;
+    left: 90px;
+
+    width: 120px;
+    height: 120px;
+    rotate: -31deg;
+  }
+
+  .emoji-thumb {
+    bottom: -15%;
+    right: 90px;
+
+    width: 271px;
+    height: 271px;
+    rotate: -20deg;
+  }
+
+  /* --- ПРАВАЯ КОЛОНКА (ТЕКСТ) --- */
+  .testimonial-content {
+    position: relative; /* Для позиционирования кавычки */
+    padding-left: 40px; /* Отступ слева, чтобы кавычка была слева */
+  }
+
+  /* Большая кавычка */
+  .quote-icon {
+    position: absolute;
+    z-index: 5;
+
+    top: 170px;
+    left: -60px;
+  }
+
+  .testimonial-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: clamp(32px, 4vw, 60px);
+    line-height: 142%;
+    color: #000;
+
+    margin-bottom: 30px;
+  }
+
+  .testimonial-text {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .testimonial-text p {
+    font-family: var(--font-inter);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 192%;
+    color: #0a0213;
+  }
+
+  .author-name {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 4px;
+  }
+
+  .author-role {
+    font-family: var(--font-inter);
+    font-size: 14px;
+    color: rgba(10, 2, 19, 0.4);
+    margin-bottom: 30px;
+  }
+
+  /* --- КНОПКИ НАВИГАЦИИ --- */
+  .slider-controls {
+    display: flex;
+    gap: 36px;
+  }
+
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f4f4f5; /* Светло-серый фон */
+    color: #0a0213;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .slider-btn:hover {
+    background-color: #e4e4e7;
+  }
+
+  /* Активная кнопка (Next) в макете темная */
+  .slider-btn.next {
+    background-color: #2a2a35;
+    color: #fff;
+  }
+
+  .slider-btn.next:hover {
+    background-color: #1a1a24;
+  }
+
+  /* --- АДАПТИВ --- */
+  @media (max-width: 900px) {
+    .testimonial-grid {
+      grid-template-columns: 1fr; /* Одна колонка */
+      gap: 50px;
+      text-align: center;
+    }
+
+    .testimonial-content {
+      padding-left: 0;
+    }
+
+    .testimonial-text {
+      align-items: center;
+    }
+
+    .quote-icon {
+      left: 50%;
+      transform: translateX(-50%);
+      top: -40px;
+    }
+
+    .slider-controls {
+      justify-content: center;
+    }
+
+    .decor-emoji {
+      display: none;
+    }
+  }
+</style>

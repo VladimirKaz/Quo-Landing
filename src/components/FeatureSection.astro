@@ -1,0 +1,125 @@
+---
+import CurrencyWidget from "@/components/ui/CurrencyWidget.astro";
+
+const paragraphs = [
+  "Quo is the most easier way for transaction with your friends and family.",
+  "No matter where are you. An exceptional way for make your life one step easier.",
+  "Quo is the most easier way for transaction with your friends and family.",
+];
+
+const titleSection = "Real time currency check and easier tracking system";
+---
+
+<section class="feature-section">
+  <div class="container feature-grid">
+    <!-- Левая колонка: Текст -->
+    <div class="feature-text">
+      <h2 class="feature-title">
+        {titleSection}
+      </h2>
+
+      <div class="feature-description">
+        {paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+
+      <a href="#!" class="btn-explore">
+        Explore Now <span>→</span>
+      </a>
+    </div>
+
+    <!-- Правая колонка: Виджет -->
+    <div class="feature-visual">
+      <CurrencyWidget />
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-section {
+    padding: 100px 0;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  /* Сетка применяется к контейнеру */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .feature-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: clamp(36px, 3.5vw, 52px);
+    line-height: 1.3;
+    color: #000;
+    margin-bottom: 30px;
+  }
+
+  .feature-description {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    margin-bottom: 40px;
+  }
+
+  .feature-description p {
+    font-family: var(--font-inter);
+    font-size: clamp(18px, 1.5vw, 22px);
+    font-weight: 400;
+    line-height: 1.92;
+    color: rgba(10, 2, 19, 0.5);
+  }
+
+  /* Стили для кнопки Explore Now */
+  .btn-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 16px 32px;
+    border-radius: 8px;
+    background-color: #f6f6f9;
+
+    color: #0a0213;
+    font-family: var(--font-inter);
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 192%;
+
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-explore:hover {
+    background-color: #e4e4e7;
+  }
+
+  .btn-explore span {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-explore:hover span {
+    transform: translateX(5px);
+  }
+
+  /* Адаптив: на планшетах и мобилках ставим в одну колонку */
+  @media (max-width: 900px) {
+    .feature-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 40px;
+    }
+
+    .feature-description {
+      align-items: center;
+    }
+
+    .feature-visual {
+      margin: 0 auto; /* Центрируем виджет */
+      max-width: 500px;
+    }
+  }
+</style>

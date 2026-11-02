@@ -1,0 +1,488 @@
+---
+import { Image } from "astro:assets";
+import HeroBg from "@/assets/images/hero/hero-bg.png";
+import MiniCardDecor from "./ui/MiniCardDecor.astro";
+import CoinDecor from "./ui/CoinDecor.astro";
+import ArrowDownDecor from "./ui/ArrowDownDecor.astro";
+import ArrowUpDecor from "./ui/ArrowUpDecor.astro";
+import PieChartMock from "./ui/PieChartMock.astro";
+
+const barData = [
+  { height: 87, color: "#6c60fe" },
+  { height: 118, color: "#ff6b6b" },
+  { height: 158, color: "#6c60fe" },
+  { height: 128, color: "#ff6b6b" },
+  { height: 177, color: "#6c60fe" },
+  { height: 106, color: "#ff6b6b" },
+  { height: 133, color: "#6c60fe" },
+  { height: 73, color: "#ff6b6b" },
+  { height: 87, color: "#6c60fe" },
+  { height: 87, color: "#ff6b6b" },
+];
+
+const title = "Experience the easier way";
+const titleHighlight = "for transaction";
+
+const description =
+  "Quo is the most easier way for transaction with your friends and family, now matter where you are. An exceptional way for make your life one step easier.";
+---
+
+<section class="hero-section">
+  <!-- Фоновая карточка для текста -->
+  <div class="hero-bg-card">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        {title}
+        <span class="highlight">{titleHighlight}</span>
+      </h1>
+      <p class="hero-description">{description}</p>
+
+      <a href="#!" class="btn-play">
+        <span class="play-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            width="14"
+            height="14"
+          >
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </span>
+        See how it works
+      </a>
+    </div>
+  </div>
+
+  <!-- Визуальный блок с широким позиционированием стрелок -->
+  <div class="hero-visual">
+    <!-- ЛЕВАЯ СТРЕЛКА (Вставьте ваш SVG из Figma внутрь) -->
+    <div class="arrow-wrapper arrow-left-position">
+      <ArrowDownDecor />
+    </div>
+
+    <!-- ЦЕНТРАЛЬНЫЙ КОНТЕЙНЕР С ДЕВУШКОЙ И КАРТОЧКАМИ -->
+    <div class="visual-container">
+      <Image class="main-avatar" src={HeroBg} alt="Hero bg" priority />
+
+      <!-- Левый виджет: Баланс -->
+      <div class="widget widget-balance">
+        <div class="widget-header">
+          <span class="widget-title">Balance stats</span>
+          <span class="dots">
+            <svg
+              width="36"
+              height="7"
+              viewBox="0 0 36 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="3.5" cy="3.5" r="3.5" fill="#C4C4C4"></circle>
+              <circle cx="17.9731" cy="3.5" r="3.5" fill="#C4C4C4"></circle>
+              <circle cx="32.4463" cy="3.5" r="3.5" fill="#C4C4C4"></circle>
+            </svg>
+          </span>
+        </div>
+        <div class="widget-amount">$45,450.00</div>
+
+        <!-- Обновленный график с разноцветными столбиками из макета -->
+        <div class="bar-chart">
+          {
+            barData.map((bar) => (
+              <div
+                class:list={["bar", bar.color]}
+                style={`height: ${bar.height}px; background-color: ${bar.color};`}
+              />
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Правый виджет: Расходы -->
+      <div class="widget widget-spendings">
+        <div class="widget-header">
+          <span class="widget-title">Spendings</span>
+          <span class="dots">
+            <svg
+              width="36"
+              height="7"
+              viewBox="0 0 36 7"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="3.5" cy="3.5" r="3.5" fill="#C4C4C4"></circle>
+              <circle cx="17.9731" cy="3.5" r="3.5" fill="#C4C4C4"></circle>
+              <circle cx="32.4463" cy="3.5" r="3.5" fill="#C4C4C4"></circle>
+            </svg>
+          </span>
+        </div>
+        <div class="pie-chart-mock">
+          <PieChartMock />
+        </div>
+      </div>
+
+      <!-- Декор: разноцветные полоски -->
+      <div class="mini-card-decor">
+        <MiniCardDecor />
+      </div>
+
+      <!-- Декор: монетка -->
+      <div class="coin-decor">
+        <div class="coin-circle">
+          <CoinDecor />
+        </div>
+      </div>
+    </div>
+
+    <!-- ПРАВАЯ СТРЕЛКА (Вставьте ваш SVG из Figma внутрь) -->
+    <div class="arrow-wrapper arrow-right-position">
+      <ArrowUpDecor />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 40px 140px 120px 140px;
+    margin-bottom: 120px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-bg-card {
+    background-color: rgba(108, 109, 254, 0.05);
+    border-radius: 50px;
+    max-width: 1640px;
+    width: 100%;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+  }
+
+  .hero-title {
+    display: flex;
+    flex-direction: column;
+
+    color: #0f172a;
+    font-size: 3.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-description {
+    color: #64748b;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 36px 0;
+  }
+
+  .btn-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #5551e6;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .play-icon {
+    background-color: #ffffff;
+    color: #5551e6;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -80px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .visual-container {
+    position: relative;
+    max-width: 460px;
+    width: 100%;
+    z-index: 10;
+  }
+
+  .main-avatar {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .arrow-wrapper {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .arrow-left-position {
+    left: -270px;
+    top: 22%;
+  }
+
+  .arrow-right-position {
+    right: -110px;
+  }
+
+  .arrow-wrapper svg {
+    display: block;
+    width: auto;
+    height: auto;
+  }
+
+  /* Парящие виджеты */
+  .widget {
+    position: absolute;
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    z-index: 15;
+  }
+
+  .widget-balance {
+    width: 378px;
+    height: 351px;
+    padding: 29px 37px 28px;
+
+    bottom: 0px;
+    left: -370px;
+  }
+
+  .widget-balance .widget-header {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .widget-balance .widget-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 500;
+    font-size: 25px;
+    text-align: center;
+    color: #0a0213;
+
+    opacity: 0.5;
+  }
+
+  .widget-balance .widget-amount {
+    display: flex;
+
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    color: #0a0213;
+  }
+
+  .dots {
+    color: #c4c4c4;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+
+  /* Bar */
+  .bar {
+    width: 18px;
+
+    border-radius: 5px;
+    box-shadow: 8px 9px 14px 1px rgba(144, 152, 181, 0.05);
+
+    will-change: transform;
+    transition: transform 0.3s ease;
+  }
+
+  .bar-chart {
+    margin-top: 35px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    height: 156px;
+  }
+
+  .bar:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Правый Виджет */
+  .widget-spendings {
+    right: -320px;
+    bottom: -120px;
+
+    border-radius: 10px;
+    width: 378px;
+    height: 351px;
+    padding: 32px;
+
+    box-shadow: 8px 9px 14px 1px rgba(144, 152, 181, 0.05);
+    background: #fff;
+
+    /* ДОБАВЛЯЕМ МАСКУ ДЛЯ ПЛАВНОГО ЗАТУХАНИЯ СНИЗУ */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .widget-title {
+    font-family: "HK Grotesk", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    color: #0a0213;
+
+    opacity: 0.5;
+  }
+
+  .pie-chart-mock {
+    margin-top: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: rotate(-7deg);
+  }
+
+  /* Декоративные элементы */
+  .mini-card-decor {
+    position: absolute;
+    background: #f9f8ff;
+    padding: 12px;
+    border-radius: 10px;
+    right: -20px;
+    top: 100px;
+    z-index: 15;
+
+    transform: rotate(22deg);
+  }
+
+  .coin-decor {
+    position: absolute;
+    left: -40px;
+    bottom: -110px;
+
+    background: #effff8;
+    border-radius: 10px;
+    width: 93px;
+    height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    z-index: 15;
+
+    transform: rotate(22deg);
+  }
+
+  .main-avatar {
+    width: 100%;
+    height: auto;
+    display: block;
+
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  /* Адаптивность */
+  @media (max-width: 1200px) {
+    .hero-section {
+      padding: 40px;
+    }
+    .arrow-wrapper {
+      display: none;
+    }
+    .widget-balance {
+      left: -40px;
+    }
+    .widget-spendings {
+      right: -40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.3rem;
+    }
+    .hero-bg-card {
+      height: auto;
+      padding: 60px 20px;
+    }
+    .hero-visual {
+      margin-top: 30px;
+    }
+    .widget {
+      position: static;
+      margin: 20px auto 0 auto;
+      width: 100%;
+      max-width: 280px;
+    }
+    .mini-card-decor,
+    .coin-decor {
+      display: none;
+    }
+    .visual-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

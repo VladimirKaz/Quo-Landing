@@ -1,0 +1,16 @@
+:root {
+  /* Colors */
+  --color-purple: #6c60fe;
+  --dark-blue: #2D23A5;
+
+  /* Background color */
+  --bg-color-purple: #5045D2;
+
+  /* logo color */
+  --logo-color: #6C60FE;
+
+  /* Шрифты */
+    --font-inter: 'Inter', sans-serif;
+    --font-hanken-grotesk: 'Hanken Grotesk', sans-serif;
+    --font-outfit: 'Outfit', sans-serif;
+}

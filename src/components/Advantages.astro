@@ -1,0 +1,221 @@
+---
+import { Image } from "astro:assets";
+import SendMoney from "@/assets/images/advantages/send-money.png";
+import Cards from "@/assets/images/advantages/cards.png";
+import Report from "@/assets/images/advantages/report.png"
+ 
+const features = [
+  {
+    title: "Boost your savings by cutting extra fees",
+    description: "Quo is the most easier way for transaction with your friends and family. No matter where are you. An exceptional way for make your life one step easier. Quo is the most easier way for transaction with your friends and family.",
+    reverse: false,
+    visualType: "contacts" 
+  },
+  {
+    title: "Capable for taking multiple cards at one place",
+    description: "Quo is the most easier way for transaction with your friends and family. No matter where are you. An exceptional way for make your life one step easier. Quo is the most easier way for transaction with your friends and family.",
+    reverse: true,
+    visualType: "cards"
+  },
+  {
+    title: "Stay updated with your daily reports and news",
+    description: "Quo is the most easier way for transaction with your friends and family. No matter where are you. An exceptional way for make your life one step easier. Quo is the most easier way for transaction with your friends and family.",
+    reverse: false,
+    visualType: "charts"
+  }
+];
+---
+
+<section class="features-section">
+  <div class="features-wrapper">
+    
+    <h2 class="features-main-title">Worthy features that you will love</h2>
+
+    <div class="features-list">
+      {features.map((feature) => (
+        // <!-- Если reverse true, добавляем класс row-reverse -->
+        <div class:list={["feature-row", { "row-reverse": feature.reverse }]}>
+          
+          <!-- Визуальная часть -->
+          <div class="feature-visual">
+            {feature.visualType === "cards" && <Image src={Cards} alt={"Cards"} loading={"lazy"} />}
+            
+            {feature.visualType === "contacts" && (
+              <Image src={SendMoney} alt={"Contacts"} class={"feature-img"}  />
+            )}
+            
+            {feature.visualType === "charts" && (
+              <Image src={Report} alt={"Charts"} class={"feature-img"} loading={"lazy"} />
+            )}
+          </div>
+
+          <!-- Текстовая часть -->
+          <div class="feature-text">
+            <h3 class="feature-title">{feature.title}</h3>
+            <p class="feature-desc">{feature.description}</p>
+            <a href="#!" class="btn-learn">Learn Now →</a>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .features-section {
+    padding: 100px 0;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .features-wrapper {
+    width: 100%;
+    max-width: 1950px;
+    margin: 0 auto;
+  }
+
+  .features-main-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: clamp(32px, 4vw, 46px);
+    color: #000;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 120px; 
+  }
+
+  .feature-row {
+    display: grid;
+    grid-template-columns: .5fr .5fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Если у строки есть класс row-reverse, меняем порядок колонок */
+  .feature-row.row-reverse .feature-visual {
+    order: 2; /* Визуал идет вторым (справа) */
+  }
+  .feature-row.row-reverse .feature-text {
+    order: 1; /* Текст идет первым (слева) */
+  }
+
+  /* По умолчанию (без row-reverse) визуал первый, текст второй */
+  .feature-row .feature-visual {
+    order: 1;
+  }
+  .feature-row .feature-text {
+    order: 2;
+  }
+
+  /* Добавляем отступ слева только для текста, который оказался слева (в row-reverse) */
+  .feature-row.row-reverse .feature-text {
+    margin-left: 160px;
+  }
+
+  .feature-row.row-reverse .feature-visual {
+  justify-content: flex-end;
+}
+
+  .feature-text {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 30px;
+
+    max-width: 770px;
+  }
+
+  .feature-title {
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 142%;
+    color: #000;
+  }
+
+  .feature-desc {
+    font-family: var(--font-inter);
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 192%;
+    color: rgba(10, 2, 19, 0.5);
+  }
+
+  .btn-learn {
+    padding: 12px 27px;
+    border-radius: 10px;
+    background: #f6f6f9;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-family: var(--font-inter);
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 192%;
+    color: #0a0213;
+
+    transition: all 0.2s ease;
+  }
+
+  .btn-learn:hover {
+    background: #f4f4f5;
+    border-color: #b6b6b6;
+  }
+
+  .feature-visual {
+    display: flex;
+    align-items: center;
+  }
+
+  .feature-visual img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .feature-img {
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Или fill, чтобы растянуть ровно по контейнеру */
+    object-position: left center; /* Прижимаем к левому краю */
+  }
+
+
+
+  /* --- АДАПТИВ --- */
+  @media (max-width: 900px) {
+    .features-list {
+      gap: 80px;
+    }
+    .feature-row {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+    
+    /* На мобилках всегда: сначала текст, потом визуал */
+    .feature-row.row-reverse .feature-visual,
+    .feature-row .feature-visual {
+      order: 2;
+    }
+    .feature-row.row-reverse .feature-text,
+    .feature-row .feature-text {
+      order: 1;
+    }
+    
+    .feature-desc {
+      margin: 0 auto 32px;
+    }
+  }
+</style>

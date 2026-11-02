@@ -1,0 +1,158 @@
+---
+const navItems = [
+  { label: "Money Transfer", href: "#!", hasDropdown: true },
+  { label: "Multi Currency", href: "#!", hasDropdown: true },
+  { label: "How it works", href: "#!" },
+  { label: "Business", href: "#!" },
+  { label: "Help", href: "#!" },
+];
+---
+<header class="site-header">
+  <div class="header-container container">
+    <!-- Логотип -->
+    <a href="#!" class="logo">Quo.</a>
+
+    <!-- Центр: Главная навигация -->
+    <nav class="main-nav">
+      <ul>
+        {
+          navItems.map((item) => (
+            <li>
+              <a href={item.href}>
+                {item.label}
+                {item.hasDropdown && (
+                  <span class="arrow" aria-hidden="true">
+                    ▼
+                  </span>
+                )}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Право: Блок авторизации -->
+    <div class="auth-actions">
+      <a href="#!" class="btn-login">Log In</a>
+      <a href="#!" class="btn-signup">Sign Up</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background-color: #ffffff;
+    font-family: "Inter", sans-serif;
+  }
+
+  .header-container {
+    padding: 55px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--font-outfit);
+    font-weight: 700;
+    font-size: 45px;
+    color: #6c60fe;
+  }
+
+  /* Центральная навигация */
+  .main-nav {
+    margin-left: auto;
+    margin-right: 92px;
+  }
+
+  .main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 32px;
+  }
+
+  .main-nav a {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    font-weight: 400;
+    font-size: 20px;
+    color: #0a0213;
+
+    transition: color 0.2s ease;
+  }
+
+  .main-nav a:hover {
+    color: #6366f1;
+  }
+
+  .arrow {
+    font-size: 0.6rem;
+    color: #71717a;
+    transition: transform 0.2s ease;
+  }
+
+  .main-nav li:hover .arrow {
+    transform: translateY(1px);
+  }
+
+  /* Блок кнопок справа */
+  .auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .btn-login {
+    font-weight: 400;
+    font-size: 20px;
+    color: #0a0213;
+
+    transition: color 0.2s ease;
+  }
+
+  .btn-login:hover {
+    color: #6366f1;
+  }
+
+  .btn-signup {
+    background-color: #6366f1;
+    padding: 10px 24px;
+    border-radius: 8px;
+
+    font-weight: 500;
+    font-size: 20px;
+    color: #fff;
+
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease;
+  }
+
+  .btn-signup:hover {
+    background-color: #6c60fe;
+  }
+
+  .btn-signup:active {
+    transform: scale(0.98);
+  }
+
+  /* --- Адаптивность --- */
+  @media (max-width: 1024px) {
+    .site-header {
+      padding: 20px 40px;
+    }
+    .main-nav ul {
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .main-nav {
+      display: none;
+    }
+  }
+</style>

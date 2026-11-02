@@ -1,0 +1,204 @@
+---
+import SocialLinks from "@/components/ui/SocialLinks.astro";
+
+const year = new Date().getFullYear();
+const description =
+  "Quo is the most easier way for transaction with your friends and family. No matter where you are. An exceptional way for make your life one step easier.";
+const columns = [
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "#!" },
+      { label: "Contact Us", href: "#!" },
+      { label: "Support", href: "#!" },
+      { label: "News/Blog", href: "#!" },
+    ],
+  },
+  {
+    title: "Terms",
+    links: [
+      { label: "Privacy Policy", href: "#!" },
+      { label: "Terms Of Usage", href: "#!" },
+      { label: "Areas Of Coverage", href: "#!" },
+    ],
+  },
+  {
+    title: "Contact",
+    links: [
+      { label: "84/E/2 West Jafrabad," },
+      { label: "Liverpool, Uk" },
+      { label: "+8801757410907", href: "tel:+8801757410907" },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <!-- Левая колонка: Брендинг и соцсети -->
+    <div class="footer-brand">
+      <h2 class="logo">Quo.</h2>
+      <p class="description">{description}</p>
+
+      <SocialLinks />
+    </div>
+    <!-- Render Colymns nav Foooter links -->
+    {
+      columns.map((column) => (
+        <div class="nav-column">
+          <h3>{column.title}</h3>
+          <ul>
+            {column.links.map((link) =>
+              link.href ? (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ) : (
+                <li>
+                  <span>{link.label}</span>
+                </li>
+              ),
+            )}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- purple line footer all right reserv -->
+  <div class="footer-rights">
+    <p>
+      &copy; - {year} . Made with
+      <svg
+        width="16"
+        height="15"
+        viewBox="0 0 16 15"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7.99978 1.31405C12.4378 -3.24795 23.5338 4.73505 7.99978 15.0001C-7.53422 4.73605 3.56178 -3.24795 7.99978 1.31405Z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          fill="#FF6B6B"></path>
+      </svg>
+      by <a href="#!">Antor Paul</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer-rights {
+    padding: 27px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--bg-color-purple);
+
+    font-family: var(--font-inter);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 183%;
+    text-transform: capitalize;
+    color: #fff;
+  }
+
+  .footer-rights p {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .footer-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 175px 140px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .footer-brand {
+    width: 320px;
+    flex-shrink: 0;
+    margin-bottom: 20px;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 70px;
+    color: #6c60fe;
+    margin: 0 0 15px 0;
+  }
+
+  .description {
+    margin-bottom: 18px;
+
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 160%;
+    color: rgba(10, 2, 19, 0.5);
+  }
+
+  .nav-column {
+    min-width: 140px;
+    margin-top: 40px;
+  }
+
+  .contact-column {
+    min-width: 180px;
+  }
+
+  .nav-column h3 {
+    font-weight: 500;
+    font-size: 23px;
+    line-height: 154%;
+    text-transform: capitalize;
+    color: #0a0213;
+
+    margin: 0 0 14px 0;
+  }
+
+  .nav-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-column a,
+  .nav-column span {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 183%;
+    text-transform: capitalize;
+    color: #71717a;
+
+    transition: color 0.2s ease;
+  }
+
+  .nav-column a:hover {
+    color: #6366f1;
+  }
+
+  /* Планшетная и мобильная адаптивность */
+  @media (max-width: 1024px) {
+    .site-footer {
+      padding: 80px 40px 50px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      gap: 30px;
+    }
+    .footer-brand {
+      width: 100%;
+    }
+  }
+</style>

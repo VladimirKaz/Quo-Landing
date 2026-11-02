@@ -1,0 +1,98 @@
+---
+interface Props {
+  placeholder?: string;
+  buttonText?: string;
+}
+
+const { placeholder = "Enter your mail here", buttonText = "Send Us" } =
+  Astro.props;
+---
+
+<form class="newsletter-form">
+  <input
+    type="email"
+    name="email"
+    placeholder={placeholder}
+    required
+    class="newsletter-input"
+  />
+  <button type="submit" class="newsletter-btn">
+    {buttonText}
+  </button>
+</form>
+
+<style>
+  .newsletter-form {
+    margin: 0 auto;
+    padding: 8px;
+    width: 100%;
+    max-width: 593px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .newsletter-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 20px 0;
+
+    font-family: var(--font-hanken-grotesk);
+    font-weight: 400;
+    font-size: 20px;
+    /* line-height: 425%; */
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .newsletter-input::placeholder {
+    color: #a1a1aa;
+  }
+
+  .newsletter-btn {
+    min-height: 86px;
+    border: none;
+    outline: none;
+    padding: 20px 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease;
+    white-space: nowrap;
+
+    font-family: var(--font-inter);
+    font-weight: 600;
+    font-size: 20px;
+    /* line-height: 425%; */
+    text-align: center;
+    color: #fff;
+    background-color: #5045d2;
+  }
+
+  .newsletter-btn:hover {
+    background-color: #6f69b4;
+  }
+
+  @media (max-width: 500px) {
+    .newsletter-form {
+      flex-direction: column;
+      background: transparent;
+    }
+    .newsletter-input {
+      background: #fff;
+      border-radius: 8px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .newsletter-btn {
+      width: 100%;
+    }
+  }
+</style>
